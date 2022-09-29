@@ -1,10 +1,11 @@
 {
-  "name": "pat-traefik-inventory",
+  "name": "pat-traefik-add-sub",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "npx rimraf ./dist && npx tsc"
   },
   "author": "",
   "license": "ISC",

@@ -1,6 +1,6 @@
-import itemRoute from "./item.route";
 import { Express } from "express";
+import route from "./route";
 
 export default function setupRoute(app: Express) {
-  app.use("/item", itemRoute);
+  app.use("/", route);
 }
