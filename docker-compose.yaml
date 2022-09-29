@@ -39,9 +39,9 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.add-sub-router.service=add-sub"
       - "traefik.http.routers.add-sub-router.entrypoints=web"
-      - "traefik.http.routers.add-sub-router.rule=Host(`localhost`) && PathPrefix(`/add-sub`)"
       - "traefik.http.services.add-sub.loadbalancer.server.port=30"
       - "traefik.docker.network=if4031-traefik_default"
+      - "traefik.http.routers.add-sub.rule=Path(`/whoami`)||Path(`/add`)||Path(`/sub`)"
 
   mult-div:
     image: "alvinwilta/mult-div"
@@ -58,7 +58,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.mult-div-router.service=mult-div"
       - "traefik.http.routers.mult-div-router.entrypoints=web"
-      - "traefik.http.routers.mult-div-router.rule=Host(`localhost`) && PathPrefix(`/mult-div`)"
       - "traefik.http.services.mult-div.loadbalancer.server.port=31"
       # - "traefik.docker.network=if4031-traefik_default"
-
+      - "traefik.http.routers.mult-div.rule=Path(`/`)||Path(`/mult`)||Path(`/div`)"
+    
