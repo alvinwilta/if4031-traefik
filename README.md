@@ -31,7 +31,7 @@ docker build -t add-sub .
 run the image (set according to environment variable):
 
 ```
-docker run -it -p 8080:3000 -e SERVER_HOSTNAME=localhost -e SERVER_PORT=3000 add-sub:latest
+docker run -it -p 8080:3000 -e SERVER_HOSTNAME=localhost -e SERVER_PORT=30 add-sub:latest
 ```
 
 ## Structure

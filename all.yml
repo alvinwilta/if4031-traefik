@@ -1,0 +1,25 @@
+http:
+  routers:
+    addsubrouter:
+      rule: Path(`/add-sub`)
+      service: addsub
+    multdivrouter:
+      rule: PathPrefix(`/mult-div`)
+      service: multdiv
+  services:
+    addsub:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:3000"
+        healthCheck:
+          path: /
+          interval: "10s"
+          timeout: "3s"
+    multdiv:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:3001"
+        healthCheck:
+          path: /
+          interval: "10s"
+          timeout: "3s"

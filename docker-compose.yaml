@@ -1,0 +1,38 @@
+version: "3.3"
+
+services:
+  traefik:
+    image: "traefik"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  add-sub:
+    image: "alvinwilta/add-sub"
+    container_name: "add-sub"
+    environment:
+      - SERVER_HOSTNAME=localhost
+      - SERVER_PORT=30
+    ports:
+      - "3000:30"
+    command: npm start
+
+  mult-div:
+    image: "alvinwilta/mult-div"
+    container_name: "mult-div"
+    environment:
+      - hostname=localhost
+      - port=31
+    ports:
+      - "3001:31"
+    command: npm start    
+    
