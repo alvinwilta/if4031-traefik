@@ -25,6 +25,10 @@ services:
     ports:
       - "3000:30"
     command: npm start
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.add-sub.entrypoints=web"
+      - "traefik.http.routers.add-sub.rule=Path(`/whoami`)||Path(`/add`)||Path(`/sub`)"
 
   mult-div:
     image: "alvinwilta/mult-div"
@@ -35,4 +39,8 @@ services:
     ports:
       - "3001:31"
     command: npm start    
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mult-div.entrypoints=web"
+      - "traefik.http.routers.mult-div.rule=Path(`/`)||Path(`/mult`)||Path(`/div`)"
     
