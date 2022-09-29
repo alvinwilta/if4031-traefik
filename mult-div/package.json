@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "build": "docker build . -t test/node-web-app",
-    "docker-run-1": "docker run -p 8000:31 -d test/node-web-app",
-    "docker-run-2": "docker run -p 8010:8000 -d test/node-web-app"
+    "build": "docker build . -t mult-div",
+    "docker-run-1": "docker run --name mult-div-docker1 --env id=1 -p 8000:31 -d mult-div",
+    "docker-run-2": "docker run --name mult-div-docker2 --env id=2 -p 8010:31 -d mult-div"
   },
   "author": "",
   "license": "ISC",
