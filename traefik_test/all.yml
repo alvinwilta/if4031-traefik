@@ -1,7 +1,7 @@
 http:
   routers:
     allbackendRouter:
-      rule: Path(`/user`)
+      rule: Path(`/`)
       service: allbackend
   services:
     allbackend:
@@ -9,3 +9,7 @@ http:
         servers:
           - url: "http://localhost:8000"
           - url: "http://localhost:8010"
+        healthCheck:
+          path: /
+          interval: "10s"
+          timeout: "3s"

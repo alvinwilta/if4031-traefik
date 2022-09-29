@@ -4,7 +4,10 @@
   "description": "account",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "build": "docker build . -t test/node-web-app",
+    "docker-run-1": "docker run -p 8000:31 -d test/node-web-app",
+    "docker-run-2": "docker run -p 8010:8000 -d test/node-web-app"
   },
   "author": "",
   "license": "ISC",

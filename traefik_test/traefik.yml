@@ -7,3 +7,7 @@ providers:
   file:
     filename: all.yml
     watch: true # So everytime all.yaml change, refresh traefik
+
+api:
+  dashboard: true
+  insecure: true
