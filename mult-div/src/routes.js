@@ -8,7 +8,7 @@ api.get('/', (req, res) => {
 });
 
 api.get('/whoami', (req, res) => {
-  res.status(200).send('mult-div');
+  res.status(200).send(`mult-div at port ${process.env.port}`);
 });
 
 api.post('/mult', (req, res) => {
