@@ -10,7 +10,9 @@ class Controller {
     this.service = new Service();
   }
   whoami: RequestHandler = async (req, res) => {
-    res.status(StatusCodes.OK).send("add-sub");
+    res
+      .status(StatusCodes.OK)
+      .send(`add-sub instance number ${process.env.id || 1}`);
   };
 
   addition: RequestHandler = async (req, res) => {
