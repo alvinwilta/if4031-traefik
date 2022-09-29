@@ -1,0 +1,11 @@
+http:
+  routers:
+    allbackendRouter:
+      rule: Path(`/user`)
+      service: allbackend
+  services:
+    allbackend:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8000"
+          - url: "http://localhost:8010"

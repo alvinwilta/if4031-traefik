@@ -1,0 +1,9 @@
+# Static configuration
+entrypoints:
+  web:
+    address: :3000
+
+providers:
+  file:
+    filename: all.yml
+    watch: true # So everytime all.yaml change, refresh traefik
