@@ -1,7 +1,7 @@
 {
-  "name": "pat-traefik-account",
+  "name": "pat-traefik-mult-div",
   "version": "1.0.0",
-  "description": "account",
+  "description": "mult-div",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",

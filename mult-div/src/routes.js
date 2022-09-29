@@ -1,21 +1,21 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const api = express.Router();
 
-api.get('/', (req, res) => {
-  res.send({ message: 'Hello World!' });
+api.get("/", (req, res) => {
+  res.send({ message: "Hello World!" });
 });
 
-api.get('/whoami', (req, res) => {
-  res.status(200).send(`mult-div instane number ${process.env.id}`);
+api.get("/whoami", (req, res) => {
+  res.status(200).send(`mult-div instance number ${process.env.id}`);
 });
 
-api.post('/mult', (req, res) => {
+api.post("/mult", (req, res) => {
   res.status(200).send(`${req.body.x * req.body.y}`);
 });
 
-api.post('/div', (req, res) => {
+api.post("/div", (req, res) => {
   res.status(200).send(`${req.body.x / req.body.y}`);
 });
 
