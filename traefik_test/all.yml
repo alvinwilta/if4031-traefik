@@ -5,7 +5,7 @@ http:
       service: whoamibackend
     allbackendRouter:
       rule: PathPrefix(`/`)
-      service: allbackend
+      service: wrr
   services:
     allbackend:
       loadBalancer:
@@ -20,7 +20,24 @@ http:
       loadBalancer:
         servers:
           - url: "http://localhost:8000"
+          - url: "http://localhost:8010"
         healthCheck:
           path: /
           interval: "10s"
           timeout: "3s"
+    wrr:
+      weighted:
+        services:
+          - name: backend1
+            weight: 4
+          - name: backend2
+            weight: 1
+
+    backend1:
+      loadBalancer:
+          servers:
+            - url: "http://localhost:8000"
+    backend2:
+      loadBalancer:
+          servers:
+            - url: "http://localhost:8010"
