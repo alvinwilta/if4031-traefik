@@ -4,7 +4,7 @@ const express = require("express");
 const api = express.Router();
 
 api.get("/", (req, res) => {
-  res.send({ message: `Hello World!` });
+  res.send(`Hello World!`);
 });
 
 api.get("/whoami", (req, res) => {
