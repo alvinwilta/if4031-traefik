@@ -23,6 +23,8 @@ services:
       # - "traefik.docker.network=if4031-traefik_default"
     healthcheck:
       test: ["CMD", "traefik", "healthcheck", "--ping"]
+    networks:
+      - default
 
   add-sub:
     image: "alvinwilta/add-sub"
@@ -41,7 +43,9 @@ services:
       - "traefik.http.routers.add-sub-router.entrypoints=web"
       - "traefik.http.services.add-sub.loadbalancer.server.port=30"
       - "traefik.docker.network=if4031-traefik_default"
-      - "traefik.http.routers.add-sub.rule=Path(`/whoami`)||Path(`/add`)||Path(`/sub`)"
+      - "traefik.http.routers.add-sub.rule=Host(`add.localhost`)"
+    networks:
+      - default
 
   mult-div:
     image: "alvinwilta/mult-div"
@@ -59,6 +63,12 @@ services:
       - "traefik.http.routers.mult-div-router.service=mult-div"
       - "traefik.http.routers.mult-div-router.entrypoints=web"
       - "traefik.http.services.mult-div.loadbalancer.server.port=31"
-      # - "traefik.docker.network=if4031-traefik_default"
-      - "traefik.http.routers.mult-div.rule=Path(`/`)||Path(`/mult`)||Path(`/div`)"
+      - "traefik.docker.network=if4031-traefik_default"
+      - "traefik.http.routers.mult-div.rule=Host(`mult.localhost`)"
+    networks:
+      - default
     
+networks:
+  default:
+    driver: "bridge"
+    name: "if4031-traefik_default"

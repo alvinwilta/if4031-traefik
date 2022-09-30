@@ -25,13 +25,20 @@ cd add-sub
 build the image:
 
 ```
-docker build -t add-sub .
+docker build -t alvinwilta/add-sub:latest .
+docker push
 ```
 
-run the image (set according to environment variable):
+run the image:
 
 ```
-docker run -it -p 8080:3000 -e SERVER_HOSTNAME=localhost -e SERVER_PORT=30 add-sub:latest
+npm run docker-run-1
+```
+
+## Using Docker Compose
+
+```
+docker-compose up
 ```
 
 ## Structure
@@ -43,3 +50,13 @@ Controller untuk validasi body req/handle error res
 Services untuk jalanin proses
 
 Interface digunakan untuk nentuin typing
+
+## Servers
+
+dashboard: http://localhost:3031
+
+gateway: http://localhost:3030
+
+add-sub: http://add.localhost:3030
+
+mult-div: http://mult.localhost:3030
