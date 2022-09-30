@@ -26,7 +26,7 @@ build the image:
 
 ```
 docker build -t alvinwilta/add-sub:latest .
-docker push
+docker push alvinwilta/add-sub:latest
 ```
 
 run the image:
@@ -39,6 +39,10 @@ npm run docker-run
 
 ```
 docker-compose up
+
+docker-compose -f docker-compose-autodisc.yaml up --scale add-sub=4 --scale mult-div=3
+
+use -d for detached
 ```
 
 ## Structure
