@@ -4,11 +4,11 @@ const express = require("express");
 const api = express.Router();
 
 api.get("/", (req, res) => {
-  res.send({ message: `Hello World! from mult-div instance number ${process.env.id}` });
+  res.send({ message: `Hello World!` });
 });
 
 api.get("/whoami", (req, res) => {
-  res.status(200).send(`mult-div instance number ${process.env.id}`);
+  res.status(200).send(`mult-div`);
 });
 
 api.post("/mult", (req, res) => {

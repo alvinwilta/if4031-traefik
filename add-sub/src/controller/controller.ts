@@ -12,7 +12,7 @@ class Controller {
   whoami: RequestHandler = async (req, res) => {
     res
       .status(StatusCodes.OK)
-      .send(`add-sub instance number ${process.env.id || 1}`);
+      .send(`add-sub`);
   };
 
   addition: RequestHandler = async (req, res) => {
