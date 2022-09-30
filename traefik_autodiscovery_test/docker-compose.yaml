@@ -1,0 +1,70 @@
+# RUN WITH
+# docker-compose up --scale add-sub=4 --scale mult-div=3
+version: "3.3"
+
+services:
+  traefik:
+    image: "traefik"
+    container_name: "traefik"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--ping"
+    ports:
+      - "3030:80"
+      - "3031:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      # - "./traefik.yml:/etc/traefik/traefik.yml:ro"
+      # - "./all.yml:/etc/traefik/all.yml:ro"
+    labels:
+      - "traefik.enable=true"
+      # - "traefik.docker.network=if4031-traefik_default"
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+    networks:
+      - default
+
+  add-sub:
+    image: "alvinwilta/add-sub"
+    environment:
+      - SERVER_HOSTNAME=localhost
+      - SERVER_PORT=30
+    expose:
+      - 30
+    command: npm start
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.add-sub-router.service=add-sub"
+      - "traefik.http.routers.add-sub-router.entrypoints=web"
+      - "traefik.http.services.add-sub.loadbalancer.server.port=30"
+      - "traefik.docker.network=if4031-traefik_default"
+      - "traefik.http.routers.add-sub.rule=Host(`add.localhost`)"
+    networks:
+      - default
+
+  mult-div:
+    image: "alvinwilta/mult-div"
+    environment:
+      - hostname=localhost
+      - port=31
+    expose:
+      - 31
+    command: npm start    
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mult-div-router.service=mult-div"
+      - "traefik.http.routers.mult-div-router.entrypoints=web"
+      - "traefik.http.services.mult-div.loadbalancer.server.port=31"
+      - "traefik.docker.network=if4031-traefik_default"
+      - "traefik.http.routers.mult-div.rule=Host(`mult.localhost`)"
+    networks:
+      - default
+    
+networks:
+  default:
+    driver: "bridge"
+    name: "if4031-traefik_default"
