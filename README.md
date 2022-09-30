@@ -32,7 +32,7 @@ docker push
 run the image:
 
 ```
-npm run docker-run-1
+npm run docker-run
 ```
 
 ## Using Docker Compose

@@ -6,8 +6,7 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "build": "npx rimraf ./dist && npx tsc",
-    "docker-run-1": "docker run --name add-sub-docker1 --env id=1 -p 8001:30 -d add-sub",
-    "docker-run-2": "docker run --name add-sub-docker2 --env id=2 -p 8002:30 -d add-sub"
+    "docker-run": "docker run -it -p 8080:3000 -e SERVER_HOSTNAME=localhost -e SERVER_PORT=3000 add-sub:latest"
   },
   "author": "",
   "license": "ISC",

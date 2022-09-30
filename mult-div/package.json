@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "build": "docker build . -t mult-div",
-    "docker-run-1": "docker run --name mult-div-docker1 --env id=1 -p 8000:31 -d mult-div",
-    "docker-run-2": "docker run --name mult-div-docker2 --env id=2 -p 8010:31 -d mult-div"
+    "docker-run-1": "docker run --name mult-div-docker1 -p 8000:31 -d mult-div",
+    "docker-run-2": "docker run --name mult-div-docker2 -p 8010:31 -d mult-div"
   },
   "author": "",
   "license": "ISC",
